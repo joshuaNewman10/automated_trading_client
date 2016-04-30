@@ -1,0 +1,25 @@
+{
+  "name": "at",
+  "version": "0.1.0",
+  "description": "AT",
+  "main": "index.html",
+  "dependencies": {
+    "axios": "^0.11.0",
+    "canvasjs": "^1.8.1",
+    "moment": "^2.10.3",
+    "requirejs": "^2.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshtrades/at.git"
+  },
+  "author": "josh newman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshtrades/at/issues"
+  },
+  "homepage": "https://github.com/joshtrades/at#readme"
+}
