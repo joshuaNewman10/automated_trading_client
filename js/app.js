@@ -1,9 +1,6 @@
 function make_date(raw_date) {
-  return new Date(
-    raw_date['year'],
-    raw_date['month'],
-    raw_date['day']
-  )
+  var date = new Date(raw_date['utc'] * 1000);
+  return date
 }
 
 function make_candle(raw_candle) {
@@ -34,6 +31,7 @@ function make_candlestick_chart(target_container, title, y_axis_params, x_axis_p
 
   var chart = new CanvasJS.Chart(target_container, 
     {
+      'zoomEnabled': true,
       'title': chart_tile,
       'exportEnabled': true,
       'axisY': yAxis,

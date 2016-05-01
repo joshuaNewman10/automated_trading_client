@@ -28,6 +28,7 @@ var ApiMethods = {
       		return {
         		start_date: start_date,
         		end_date: end_date,
+        		chart_id: res.data.chart_id,
         		candle_data: res.data.candles,
         		title: res.data.title,
         		y_params: res.data.y_params,
@@ -40,6 +41,7 @@ var ApiMethods = {
 		var path = server + '/api/v1/candle';
 		console.log('Sending Marked Candle Data');
 		return axios.post(path, {
+			chart_id: window.localStorage.getItem('chart_id'),
         	start_date: start_date.format(DATE_FORMAT),
         	end_date: end_date.format(DATE_FORMAT),
         	granularity: granularity,

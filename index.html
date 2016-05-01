@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <link rel="stylesheet" type="text/css" href="css/switch.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script type="text/javascript" src="./node_modules/canvasjs/dist/canvasjs.3.js"></script>
   <script type="text/javascript" src="./node_modules/moment/moment.js"></script>
@@ -12,14 +13,39 @@
 </head>
 <body>
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<div id="candleInfo" style="height: 300px; width: 100%;">
+  <div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+    <label class="onoffswitch-label" for="myonoffswitch">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+  </div>
+  <div>
+  </br>
+    <input id="patternBox" type="text" value="buy" name="pattern">
+  </div>
+</div>
+
 <script>
+  var DEFAULT_PATTERN = 'yes';
+
   $('#chartContainer').on('click', function() {
+    var switchValue = $('#myonoffswitch').is(':checked');
+    if (switchValue === false) {
+      return
+    }
+
     var mark_candles = ApiMethods.mark_candle_data;
     var target_candle = ($('.canvasjs-chart-tooltip').find('div').text());
     var start_date = moment();
     var end_date = moment();
     var granularity = 'D';
-    var pattern = 'dragon';
+    var pattern = $('#patternBox').val();
+    if (pattern === '' or pattern === undefined) {
+      pattern = DEFAULT_PATTERN;
+    }
+
     mark_selected_candle_data(start_date, end_date, granularity, target_candle, pattern);
   });
 </script>

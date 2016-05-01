@@ -11,7 +11,9 @@ function format_marked_candle(marked_candle) {
 	var low = marked_candle.substring(low_index, close_index);
 	var close = marked_candle.substring(close_index);
 
+
 	return {
+		'date': date,
 		'open': open,
 		'close': close,
 		'low': low,
@@ -24,7 +26,6 @@ function mark_selected_candle_data(startDate, endDate, granularity, markedCandle
 	var send_marked_candle = ApiMethods.send_marked_candle_data;
 	markedCandle = format_marked_candle(markedCandle);
 	send_marked_candle(startDate, endDate, granularity, markedCandle, pattern);
-
 }
 
 
@@ -36,6 +37,8 @@ function get_requested_candle_data() {
 
   	get_candle_data(start_date, end_date, granularity, function(response_data) {
   		console.log(response_data)
+  		var chart_id = response_data.chart_id;
+  		window.localStorage.setItem('chart_id', chart_id)
   		var candle_data = response_data.candle_data;
   		var title = response_data.title;
   		var y_params = response_data.y_params;
