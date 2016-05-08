@@ -10,10 +10,11 @@
   <script type="text/javascript" src="js/utils/data.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="js/api.js"></script>
+  <script type="text/javascript" src="js/charts.js"></script>
 </head>
 <body>
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-<div id="candleInfo" style="height: 300px; width: 100%;">
+<div id="candleInfo" style="height: 100px; width: 100%;">
   <div class="onoffswitch">
     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
     <label class="onoffswitch-label" for="myonoffswitch">
@@ -26,16 +27,16 @@
     <input id="patternBox" type="text" value="buy" name="pattern">
   </div>
 </div>
+<div id="chartMeta"></div>
+</div>
 
 <script>
   var DEFAULT_PATTERN = 'yes';
-
   $('#chartContainer').on('click', function() {
     var switchValue = $('#myonoffswitch').is(':checked');
     if (switchValue === false) {
       return
     }
-
     var mark_candles = ApiMethods.mark_candle_data;
     var target_candle = ($('.canvasjs-chart-tooltip').find('div').text());
     var start_date = moment();

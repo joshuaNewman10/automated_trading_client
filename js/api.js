@@ -14,20 +14,28 @@ var config = {
 };
 
 var ApiMethods = {
-	get_candle_data: function(start_date, end_date, granularity, callback) {
+  get_charts_meta_info: function(callback) {
+    var path = server + '/api/v1/charts';
+    console.log('Fetching Charts');
+    axios.get(path, {
+      config
+    }).then(function(res) {
+      console.log(res.data.charts);
+      return {
+        charts: res.data.charts
+      }
+    }).then(callback);
+  },
+	get_candle_data: function(chart_id, callback) {
 		var path = server + '/api/v1/candle';
 		console.log('Fetching Requested Candle Data');
     	axios.get(path, {
       		params: {
-        		start_date: start_date.format(DATE_FORMAT),
-        		end_date: end_date.format(DATE_FORMAT),
-        		granularity: granularity
+        		chart_id: chart_id
       		},
       		config
     	}).then(function(res){
       		return {
-        		start_date: start_date,
-        		end_date: end_date,
         		chart_id: res.data.chart_id,
         		candle_data: res.data.candles,
         		title: res.data.title,
@@ -37,14 +45,11 @@ var ApiMethods = {
     	}).then(callback);
 	},
 
-	send_marked_candle_data: function(start_date, end_date, granularity, candle, pattern) {
+	send_marked_candle_data: function(chart_id, candle, pattern) {
 		var path = server + '/api/v1/candle';
 		console.log('Sending Marked Candle Data');
 		return axios.post(path, {
 			chart_id: window.localStorage.getItem('chart_id'),
-        	start_date: start_date.format(DATE_FORMAT),
-        	end_date: end_date.format(DATE_FORMAT),
-        	granularity: granularity,
         	candle: candle,
         	pattern: pattern
     	});
