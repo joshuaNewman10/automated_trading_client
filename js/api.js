@@ -45,13 +45,14 @@ var ApiMethods = {
     	}).then(callback);
 	},
 
-	send_marked_candle_data: function(chart_id, candle, pattern) {
+	send_marked_candle_data: function(chart_id, hours_offset, candle, pattern) {
 		var path = server + '/api/v1/candle';
 		console.log('Sending Marked Candle Data');
 		return axios.post(path, {
-			chart_id: window.localStorage.getItem('chart_id'),
-        	candle: candle,
-        	pattern: pattern
-    	});
+        chart_id: chart_id,
+        hours_offset: hours_offset,
+        candle: candle,
+        pattern: pattern
+    });
 	}
 };

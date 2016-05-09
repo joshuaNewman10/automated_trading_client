@@ -13,15 +13,8 @@
   <script type="text/javascript" src="js/charts.js"></script>
 </head>
 <body>
-<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<div id="validateChartContainer" style="height: 300px; width: 100%;"></div>
 <div id="candleInfo" style="height: 100px; width: 100%;">
-  <div class="onoffswitch">
-    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-    <label class="onoffswitch-label" for="myonoffswitch">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-  </div>
   <div>
   </br>
     <input id="patternBox" type="text" value="buy" name="pattern">
@@ -31,21 +24,10 @@
 </div>
 
 <script>
-  var DEFAULT_PATTERN = 'yes';
-  $('#chartContainer').on('click', function() {
-    var switchValue = $('#myonoffswitch').is(':checked');
-    if (switchValue === false) {
-      return
-    }
-    var mark_candles = ApiMethods.mark_candle_data;
-    var target_candle = ($('.canvasjs-chart-tooltip').find('div').text());
-    var pattern = $('#patternBox').val();
-    if (pattern === '' || pattern === undefined) {
-      pattern = DEFAULT_PATTERN;
-    }
-
-    mark_selected_candle_data(target_candle, pattern);
-  });
+  var pattern = $('#patternBox').val();
+  window.onload = function () {
+    get_pattern_candles(pattern);
+}
 </script>
 </body>
 

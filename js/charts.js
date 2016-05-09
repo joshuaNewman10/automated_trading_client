@@ -3,7 +3,7 @@ function make_candlestick_chart(target_container, title, y_axis_params, x_axis_p
   var yAxis = y_axis_params;
   var xAxis = x_axis_params;
   var toolTip = {'content': "Date:{x}</br><strong>Prices:</strong></br>Open:{y[0]}, Close:{y[3]}</br>High:{y[1]},Low:{y[2]}"};
-  var chart_data = [{'type': 'candlestick', 'dataPoints': data}];
+  var chart_data = [{'type': 'candlestick', 'dataPoints': data, 'xValueType': 'dateTime'}];
 
   var chart = new CanvasJS.Chart(target_container, 
     {
