@@ -45,6 +45,25 @@ var ApiMethods = {
     	}).then(callback);
 	},
 
+  get_marked_candles: function() {
+    var path = server + '/api/v1/candle';
+    console.log('Sending Marked Candle Data');
+    axios.get(path, {
+          params: {
+            chart_id: chart_id
+          },
+          config
+      }).then(function(res){
+          return {
+            chart_id: res.data.chart_id,
+            candle_data: res.data.candles,
+            title: res.data.title,
+            y_params: res.data.y_params,
+            x_params: res.data.x_params
+          };
+      }).then(callback);
+  },
+
 	send_marked_candle_data: function(chart_id, hours_offset, candle, pattern) {
 		var path = server + '/api/v1/candle';
 		console.log('Sending Marked Candle Data');

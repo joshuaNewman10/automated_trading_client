@@ -20,6 +20,7 @@ function format_marked_candle(marked_candle) {
 	}
 }
 
+
 function format_raw_candle_data(raw_data) {
   var data_points = [];
 
