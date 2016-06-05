@@ -5,12 +5,12 @@ DATE_FORMAT = 'YYYY-MM-DD'
 axios.defaults.headers.common['Authorization'] = 'trade';
 
 var config = {
-       headers: {
-             'Content-Type': 'application/x-www-form-urlencoded'
-       },
-       params: {
-             email_address: 'jonewman1020@gmail.com'
-       }
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  params: {
+    email_address: 'jonewman1020@gmail.com'
+  }
 };
 
 
@@ -42,10 +42,10 @@ var ApiMethods = {
 		logger.info('Fetching Requested Candle Data', _name, '');
 
     	axios.get(path, {
-      		params: {
-        		chart_id: chart_id
-      		},
-      		config
+        params: {
+          chart_id: chart_id
+        },
+        config
     	}).then(function(response){
       		return {
         		chart_id: response.data.chart_id,
@@ -66,10 +66,10 @@ var ApiMethods = {
     logger.info('Sending Marked Candle Data', _name, '');
 
     axios.get(path, {
-          params: {
-            chart_id: chart_id
-          },
-          config
+      params: {
+        chart_id: chart_id
+      },
+        config
       }).then(function(response){
           return {
             chart_id: response.data.chart_id,
@@ -90,10 +90,10 @@ var ApiMethods = {
 		logger.info('Sending Marked Candle Data', _name, '');
 
 		return axios.post(path, {
-        chart_id: chart_id,
-        hours_offset: hours_offset,
-        candle: candle,
-        pattern: pattern
+      chart_id: chart_id,
+      hours_offset: hours_offset,
+      candle: candle,
+      pattern: pattern
     });
 	}
 };
