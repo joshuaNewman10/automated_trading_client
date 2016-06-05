@@ -1,11 +1,11 @@
 var Cache = function() {
+};
 
-	set: function(key, value) {
+Cache.prototype.set = function(key, value) {
 		window.localStorage.setItem(key, value)
 
-	},
+};
 
-	get: function(key) {
+Cache.prototype.get = function(key) {
 		return window.localStorage.getItem(key)
-	}
-}
+};
