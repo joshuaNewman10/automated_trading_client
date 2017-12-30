@@ -60,12 +60,11 @@ function get_requested_candle_data(chart_id) {
   var formatted_data;
   var chart;
 
-
-  logger.info('Chart_id', _name, chart_id)
+  logger.info('Chart_id', _name, chart_id);
 
     get_candle_data(chart_id, function(response_data) {
       chart_id = response_data.chart_id;
-      cache.set('chart_id', chart_id)
+      cache.set('chart_id', chart_id);
 
       candle_data = response_data.candle_data;
 
